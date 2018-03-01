@@ -1,8 +1,35 @@
 #include "fenetreprincipal.h"
+#include "fenetreparametre.h"
+
+void FenetrePrincipal::oparametre()
+{
+    fenetreparametre fn_parametre;
+    fn_parametre.show();
+}
+
+void FenetrePrincipal::maj_comtage()
+{
+    compteur++;
+    avancement->setValue(compteur);
+    if(avancement->value()==100)
+    {
+        sec->stop();
+        bt_start->setEnabled(true);
+        bt_parametre->setEnabled(true);
+        bt_init->setEnabled(true);
+        bt_visu->setEnabled(true);
+        avancement->setValue(0);
+    }
+}
 
 void FenetrePrincipal::mise_en_marche()
 {
     bt_start->setEnabled(false);
+    bt_parametre->setEnabled(false);
+    bt_init->setEnabled(false);
+    bt_visu->setEnabled(false);
+    sec->start(20);
+    compteur = 0;
 }
 
 FenetrePrincipal::FenetrePrincipal() : QWidget()
@@ -11,6 +38,8 @@ FenetrePrincipal::FenetrePrincipal() : QWidget()
     setMinimumSize(600,150);
     //construction
 
+    sec = new QTimer();
+
     bt_start = new QPushButton("Démarrer");
     bt_parametre = new QPushButton("Paramètres");
     bt_init = new QPushButton("Initialisation");
@@ -18,7 +47,7 @@ FenetrePrincipal::FenetrePrincipal() : QWidget()
     bt_visu = new QPushButton("Visualisation 3D");
 
     avancement = new QProgressBar();
-    avancement->setValue(50);
+    avancement->setValue(0);
     avancement->setRange(0,100);
 
     ligne1 = new QLabel();
@@ -48,6 +77,8 @@ FenetrePrincipal::FenetrePrincipal() : QWidget()
 
     connect(bt_start, SIGNAL(pressed()), this, SLOT(mise_en_marche()));
     connect(bt_quitter, SIGNAL(pressed()), qApp, SLOT(quit()));
+    connect(sec, SIGNAL(timeout()), this, SLOT(maj_comtage()));
+    connect(bt_parametre, SIGNAL(pressed()), this, SLOT(oparametre()));
 
     setLayout(layoutPrincipal);
 }

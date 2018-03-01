@@ -1,7 +1,9 @@
 QT += widgets
 SOURCES += \
     main.cpp \
-    fenetreprincipal.cpp
+    fenetreprincipal.cpp \
+    fenetreparametre.cpp
 
 HEADERS += \
-    fenetreprincipal.h
+    fenetreprincipal.h \
+    fenetreparametre.h

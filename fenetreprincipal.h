@@ -8,6 +8,7 @@
 #include <QGridLayout>
 #include <QProgressBar>
 #include <QLabel>
+#include <QTimer>
 
 class FenetrePrincipal : public QWidget
 {
@@ -27,12 +28,16 @@ private:
     QLabel *ligne1;
     QLabel *ligne2;
     QLabel *ligne3;
+    QTimer *sec;
+    int compteur;
 
 
 signals:
 
 public slots:
     void mise_en_marche(void);
+    void maj_comtage(void);
+    void oparametre(void);
 
 };
 
