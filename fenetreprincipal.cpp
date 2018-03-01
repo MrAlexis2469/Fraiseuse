@@ -1,5 +1,10 @@
 #include "fenetreprincipal.h"
 
+void FenetrePrincipal::mise_en_marche()
+{
+    bt_start->setEnabled(false);
+}
+
 FenetrePrincipal::FenetrePrincipal() : QWidget()
 {
     setWindowTitle("Lancement");
@@ -9,6 +14,8 @@ FenetrePrincipal::FenetrePrincipal() : QWidget()
     bt_start = new QPushButton("Démarrer");
     bt_parametre = new QPushButton("Paramètres");
     bt_init = new QPushButton("Initialisation");
+    bt_quitter = new QPushButton("Quitter");
+    bt_visu = new QPushButton("Visualisation 3D");
 
     avancement = new QProgressBar();
     avancement->setValue(50);
@@ -36,6 +43,11 @@ FenetrePrincipal::FenetrePrincipal() : QWidget()
     grid_principal->addWidget(ligne3,0,2,1,1);
 
     layoutPrincipal->addLayout(grid_principal);
+    layoutPrincipal->addWidget(bt_visu);
+    layoutPrincipal->addWidget(bt_quitter);
+
+    connect(bt_start, SIGNAL(pressed()), this, SLOT(mise_en_marche()));
+    connect(bt_quitter, SIGNAL(pressed()), qApp, SLOT(quit()));
 
     setLayout(layoutPrincipal);
 }
