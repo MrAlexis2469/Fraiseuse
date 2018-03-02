@@ -35,6 +35,7 @@ private:
     int compteur;
     fenetreparametre fn_parametre;
     QUrl site;
+    int longueur1, longueur2,longueur3;
 
 signals:
 

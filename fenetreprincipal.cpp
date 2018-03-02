@@ -40,6 +40,9 @@ FenetrePrincipal::FenetrePrincipal() : QWidget()
 {
     setWindowTitle("Lancement");
     setMinimumSize(600,150);
+    longueur1 =0;
+    longueur2 =0;
+    longueur3 =0;
     //construction
 
     sec = new QTimer();
@@ -57,9 +60,9 @@ FenetrePrincipal::FenetrePrincipal() : QWidget()
     ligne1 = new QLabel();
     ligne2 = new QLabel();
     ligne3 = new QLabel();
-    ligne1->setText("Ligne n°1 : 40");
-    ligne2->setText("Ligne n°2 : 75");
-    ligne3->setText("Ligne n°3 : 80");
+    ligne1->setText(QString("Ligne n°1 = %1 cm").arg(longueur1));
+    ligne2->setText(QString("Ligne n°2 = %1 cm").arg(longueur2));
+    ligne3->setText(QString("Ligne n°3 = %1 cm").arg(longueur3));
     ligne1->setAlignment(Qt::AlignCenter);
     ligne2->setAlignment(Qt::AlignCenter);
     ligne3->setAlignment(Qt::AlignCenter);
