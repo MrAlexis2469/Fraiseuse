@@ -9,6 +9,9 @@
 #include <QProgressBar>
 #include <QLabel>
 #include <QTimer>
+#include <fenetreparametre.h>
+#include <QDesktopServices>
+#include <QUrl>
 
 class FenetrePrincipal : public QWidget
 {
@@ -30,15 +33,16 @@ private:
     QLabel *ligne3;
     QTimer *sec;
     int compteur;
-
+    fenetreparametre fn_parametre;
+    QUrl site;
 
 signals:
 
 public slots:
     void mise_en_marche(void);
     void maj_comtage(void);
-    void oparametre(void);
-
+    void oparametre();
+    void ouverturesite();
 };
 
 #endif // FENETREPRINCIPAL_H

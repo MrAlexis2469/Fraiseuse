@@ -1,9 +1,13 @@
 #include "fenetreprincipal.h"
-#include "fenetreparametre.h"
+
+void FenetrePrincipal::ouverturesite()
+{
+    site = "https://google.fr";
+    QDesktopServices::openUrl(site);
+}
 
 void FenetrePrincipal::oparametre()
 {
-    fenetreparametre fn_parametre;
     fn_parametre.show();
 }
 
@@ -78,7 +82,8 @@ FenetrePrincipal::FenetrePrincipal() : QWidget()
     connect(bt_start, SIGNAL(pressed()), this, SLOT(mise_en_marche()));
     connect(bt_quitter, SIGNAL(pressed()), qApp, SLOT(quit()));
     connect(sec, SIGNAL(timeout()), this, SLOT(maj_comtage()));
-    connect(bt_parametre, SIGNAL(pressed()), this, SLOT(oparametre()));
+    connect(bt_parametre,SIGNAL(pressed()), this,SLOT(oparametre()));
+    connect(bt_visu, SIGNAL(pressed()), this, SLOT(ouverturesite()));
 
     setLayout(layoutPrincipal);
 }
