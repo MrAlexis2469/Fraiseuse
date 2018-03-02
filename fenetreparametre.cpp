@@ -4,13 +4,41 @@ fenetreparametre::fenetreparametre() : QWidget()
 {
     setWindowModality(Qt::ApplicationModal);
     setWindowTitle("Paramètre");
-    setMinimumSize(300,100);
+    setMinimumSize(400,150);
 
-    layout1 = new QVBoxLayout();
-    bt_quitter = new QPushButton("Confirmer", this);
+    layoutgeneral = new QVBoxLayout();
+    bt_confirme = new QPushButton("Confirmer");
+    label1 = new QLabel("Communication Série");
+    label1->setAlignment(Qt::AlignCenter);
+    label2 = new QLabel("Baudrate:");
+    label3 = new QLabel("COM: ");
+    label4 = new QLabel("nbs Bit Stop:");
+    label5 =new QLabel("Paramètre application");
+    label5->setAlignment(Qt::AlignCenter);
+    list1 = new QComboBox(this);
+    list2 = new QComboBox(this);
+    layoutgrid = new QGridLayout();
+    list1->addItem("58000");
+    list1->addItem("75000");
+    list2->addItem("COM 1");
+    list2->addItem("COM 2");
+    box1 = new QRadioButton("1 BIT");
+    box2 = new QRadioButton("2 BIT");
 
-    layout1->addWidget(bt_quitter);
+    layoutgrid->addWidget(label2,0,0,1,1);
+    layoutgrid->addWidget(list1,0,1,1,2);
+    layoutgrid->addWidget(list2,1,1,1,2);
+    layoutgrid->addWidget(label3,1,0,1,1);
+    layoutgrid->addWidget(label4,2,0,1,1);
+    layoutgrid->addWidget(box1,2,1,1,1);
+    layoutgrid->addWidget(box2,2,2,1,1);
 
-    connect(bt_quitter, SIGNAL(pressed()),this,SLOT(close()));
-    setLayout(layout1);
+    layoutgeneral->addWidget(label1);
+    layoutgeneral->addLayout(layoutgrid);
+    layoutgeneral->addWidget(label5);
+    layoutgeneral->addWidget(bt_confirme);
+
+    connect(bt_confirme, SIGNAL(pressed()),this,SLOT(close()));
+
+    setLayout(layoutgeneral);
 }
