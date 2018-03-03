@@ -3,7 +3,7 @@
 fenetreparametre::fenetreparametre() : QWidget()
 {
     setWindowModality(Qt::ApplicationModal);
-    setWindowTitle("Paramètre");
+    setWindowTitle("Paramètres");
     setMinimumSize(400,150);
 
     layoutgeneral = new QVBoxLayout();
@@ -12,17 +12,21 @@ fenetreparametre::fenetreparametre() : QWidget()
     label1->setAlignment(Qt::AlignCenter);
     label2 = new QLabel("Baudrate:");
     label3 = new QLabel("COM: ");
-    label4 = new QLabel("nbs Bit Stop:");
+    label4 = new QLabel("Nbs Bit Stop:");
     label5 =new QLabel("Paramètre application");
     label5->setAlignment(Qt::AlignCenter);
     list1 = new QComboBox(this);
     list2 = new QComboBox(this);
     layoutgrid = new QGridLayout();
-    list1->addItem("58000");
-    list1->addItem("75000");
+    list1->addItem("1200");
+    list1->addItem("2400");
+    list1->addItem("4800");
+    list1->addItem("9600");
+    list1->addItem("19200");
     list2->addItem("COM 1");
     list2->addItem("COM 2");
     box1 = new QRadioButton("1 BIT");
+    box1->setChecked(true);
     box2 = new QRadioButton("2 BIT");
 
     layoutgrid->addWidget(label2,0,0,1,1);

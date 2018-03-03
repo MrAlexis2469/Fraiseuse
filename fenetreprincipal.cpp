@@ -39,7 +39,7 @@ void FenetrePrincipal::mise_en_marche()
 FenetrePrincipal::FenetrePrincipal() : QWidget()
 {
     setWindowTitle("Lancement");
-    setMinimumSize(600,150);
+    setMinimumSize(600,200);
     longueur1 =0;
     longueur2 =0;
     longueur3 =0;
