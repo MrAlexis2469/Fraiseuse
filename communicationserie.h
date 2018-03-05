@@ -10,6 +10,8 @@ class communicationserie
 
 public:
     communicationserie();
+    QString list_ports[30];
+    int i;
 private:
      QSerialPort *portserie;
 };

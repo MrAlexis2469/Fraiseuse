@@ -12,6 +12,7 @@
 #include <fenetreparametre.h>
 #include <QDesktopServices>
 #include <QUrl>
+#include "communicationserie.h"
 
 class FenetrePrincipal : public QWidget
 {

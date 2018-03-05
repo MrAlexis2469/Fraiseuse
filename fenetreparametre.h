@@ -9,6 +9,7 @@
 #include <QLabel>
 #include <QComboBox>
 #include <QRadioButton>
+#include "communicationserie.h"
 
 class fenetreparametre : public QWidget
 {

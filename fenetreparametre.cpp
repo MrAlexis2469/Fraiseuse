@@ -2,6 +2,7 @@
 
 fenetreparametre::fenetreparametre() : QWidget()
 {
+    communicationserie test;
     setWindowModality(Qt::ApplicationModal);
     setWindowTitle("Paramètres");
     setMinimumSize(400,150);
@@ -23,8 +24,12 @@ fenetreparametre::fenetreparametre() : QWidget()
     list1->addItem("4800");
     list1->addItem("9600");
     list1->addItem("19200");
-    list2->addItem("COM 1");
-    list2->addItem("COM 2");
+
+    for(int x; x<(test.i); x++)
+    {
+        list2->addItem(test.list_ports[x]);
+    }
+
     box1 = new QRadioButton("1 BIT");
     box1->setChecked(true);
     box2 = new QRadioButton("2 BIT");
