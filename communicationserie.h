@@ -9,6 +9,7 @@ class communicationserie
 {
 
 public:
+    void check_port();
     communicationserie();
     QString list_ports[30];
     int i;

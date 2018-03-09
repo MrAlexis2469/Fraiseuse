@@ -8,7 +8,8 @@ void FenetrePrincipal::ouverturesite()
 
 void FenetrePrincipal::oparametre()
 {
-    fn_parametre.show();
+    fn_parametre.mise_a_jour(serie);
+    //fn_parametre.show();
 }
 
 void FenetrePrincipal::maj_comtage()
@@ -38,6 +39,7 @@ void FenetrePrincipal::mise_en_marche()
 
 FenetrePrincipal::FenetrePrincipal() : QWidget()
 {
+    serie = new communicationserie();
     setWindowTitle("Lancement");
     setMinimumSize(600,200);
     longueur1 =0;

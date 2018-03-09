@@ -16,6 +16,7 @@ class fenetreparametre : public QWidget
     Q_OBJECT
 public:
     fenetreparametre();
+    void mise_a_jour(communicationserie *serie);
 
 private:
     QVBoxLayout *layoutgeneral;
@@ -34,6 +35,7 @@ private:
 signals:
 
 public slots:
+
 };
 
 #endif // FENETREPARAMETRE_H

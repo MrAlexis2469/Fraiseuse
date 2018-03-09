@@ -38,6 +38,8 @@ private:
     QUrl site;
     int longueur1, longueur2,longueur3;
 
+    communicationserie *serie;
+
 signals:
 
 public slots:
