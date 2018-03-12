@@ -9,7 +9,7 @@
 #include <QProgressBar>
 #include <QLabel>
 #include <QTimer>
-#include <fenetreparametre.h>
+#include "fenetreparametre.h"
 #include <QDesktopServices>
 #include <QUrl>
 #include "communicationserie.h"
@@ -19,6 +19,7 @@ class FenetrePrincipal : public QWidget
     Q_OBJECT
 public:
     FenetrePrincipal();
+    communicationserie *serie;
 
 private:
     QVBoxLayout *layoutPrincipal;
@@ -34,11 +35,11 @@ private:
     QLabel *ligne3;
     QTimer *sec;
     int compteur;
-    fenetreparametre fn_parametre;
+    fenetreparametre *fn_parametre;
     QUrl site;
     int longueur1, longueur2,longueur3;
 
-    communicationserie *serie;
+
 
 signals:
 

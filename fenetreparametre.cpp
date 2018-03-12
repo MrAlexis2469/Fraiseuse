@@ -1,7 +1,8 @@
 #include "fenetreparametre.h"
 
-fenetreparametre::fenetreparametre() : QWidget()
+fenetreparametre::fenetreparametre(communicationserie *serie) : QWidget()
 {
+    seriee = serie;
     setWindowModality(Qt::ApplicationModal);
     setWindowTitle("Paramètres");
     setMinimumSize(400,150);
@@ -41,18 +42,49 @@ fenetreparametre::fenetreparametre() : QWidget()
     layoutgeneral->addWidget(label5);
     layoutgeneral->addWidget(bt_confirme);
 
-    connect(bt_confirme, SIGNAL(pressed()),this,SLOT(close()));
+    connect(bt_confirme, SIGNAL(pressed()),this,SLOT(confirme_parametres()));
 
     setLayout(layoutgeneral);
 }
 
-void fenetreparametre::mise_a_jour(communicationserie *serie)
+void fenetreparametre::mise_a_jour()
 {
     list2->clear();
-    serie->check_port();
-    for(int x=0; x<(serie->i); x++)
+    seriee->check_port();
+    for(int x=0; x<(seriee->i); x++)
     {
-        list2->addItem(serie->list_ports[x]);
+        list2->addItem(seriee->list_ports[x]);
     }
     show();
+}
+
+void fenetreparametre::confirme_parametres()
+{
+    QString chaine = "/dev/" + list2->currentText();
+    seriee->portserie->setPortName(chaine);
+    if(box1->isChecked()==1)
+        seriee->portserie->setStopBits(QSerialPort::OneStop);
+    else
+        seriee->portserie->setStopBits(QSerialPort::TwoStop);
+    switch (list1->currentIndex())
+    {
+    case 0:
+        seriee->portserie->setBaudRate(QSerialPort::Baud1200);
+        break;
+    case 1:
+        seriee->portserie->setBaudRate(QSerialPort::Baud2400);
+        break;
+    case 2:
+        seriee->portserie->setBaudRate(QSerialPort::Baud4800);
+        break;
+    case 3:
+        seriee->portserie->setBaudRate(QSerialPort::Baud9600);
+        break;
+    case 4:
+        seriee->portserie->setBaudRate(QSerialPort::Baud19200);
+        break;
+    default:
+        break;
+    }
+    close();
 }
