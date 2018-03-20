@@ -2,6 +2,12 @@
 
 void FenetrePrincipal::ouverturesite()
 {
+    QFile file("test.txt");
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        qDebug()<<"fichier non ouvert";
+    QTextStream flux(&file);
+    flux.setCodec("UTF-8");
+    flux << serie->ndroite << endl << "Nous sommes "<<endl;
     site = "https://google.fr";
     QDesktopServices::openUrl(site);
 }
@@ -24,6 +30,9 @@ void FenetrePrincipal::maj_comtage()
         bt_init->setEnabled(true);
         bt_visu->setEnabled(true);
         avancement->setValue(0);
+        ligne1->setText(QString("Ligne n°1 = %1 cm").arg(serie->ndroite));
+        serie->portserie->write("0");
+        serie->portserie->flush();
     }
 }
 
@@ -35,6 +44,8 @@ void FenetrePrincipal::mise_en_marche()
     bt_visu->setEnabled(false);
     sec->start(20);
     compteur = 0;
+    serie->portserie->write("1");
+    serie->portserie->flush();
 }
 
 FenetrePrincipal::FenetrePrincipal() : QWidget()
@@ -43,9 +54,6 @@ FenetrePrincipal::FenetrePrincipal() : QWidget()
     fn_parametre = new fenetreparametre(serie);
     setWindowTitle("Lancement");
     setMinimumSize(600,200);
-    longueur1 =0;
-    longueur2 =0;
-    longueur3 =0;
     //construction
 
     sec = new QTimer();
@@ -63,9 +71,9 @@ FenetrePrincipal::FenetrePrincipal() : QWidget()
     ligne1 = new QLabel();
     ligne2 = new QLabel();
     ligne3 = new QLabel();
-    ligne1->setText(QString("Ligne n°1 = %1 cm").arg(longueur1));
-    ligne2->setText(QString("Ligne n°2 = %1 cm").arg(longueur2));
-    ligne3->setText(QString("Ligne n°3 = %1 cm").arg(longueur3));
+    ligne1->setText(QString("Ligne n°1 = 0 cm"));
+    ligne2->setText(QString("Ligne n°2 = 0 cm"));
+    ligne3->setText(QString("Ligne n°3 = 0 cm"));
     ligne1->setAlignment(Qt::AlignCenter);
     ligne2->setAlignment(Qt::AlignCenter);
     ligne3->setAlignment(Qt::AlignCenter);

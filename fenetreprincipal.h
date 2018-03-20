@@ -13,6 +13,8 @@
 #include <QDesktopServices>
 #include <QUrl>
 #include "communicationserie.h"
+#include <QFile>
+#include <QTextStream>
 
 class FenetrePrincipal : public QWidget
 {
@@ -20,6 +22,9 @@ class FenetrePrincipal : public QWidget
 public:
     FenetrePrincipal();
     communicationserie *serie;
+    QLabel *ligne1;
+    QLabel *ligne2;
+    QLabel *ligne3;
 
 private:
     QVBoxLayout *layoutPrincipal;
@@ -30,14 +35,10 @@ private:
     QPushButton *bt_quitter;
     QPushButton *bt_visu;
     QProgressBar *avancement;
-    QLabel *ligne1;
-    QLabel *ligne2;
-    QLabel *ligne3;
     QTimer *sec;
     int compteur;
     fenetreparametre *fn_parametre;
     QUrl site;
-    int longueur1, longueur2,longueur3;
 
 
 
