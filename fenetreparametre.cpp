@@ -14,8 +14,6 @@ fenetreparametre::fenetreparametre(communicationserie *serie) : QWidget()
     label2 = new QLabel("Baudrate:");
     label3 = new QLabel("COM: ");
     label4 = new QLabel("Nbs Bit Stop:");
-    label5 =new QLabel("Paramètre application");
-    label5->setAlignment(Qt::AlignCenter);
     list1 = new QComboBox(this);
     list2 = new QComboBox(this);
     layoutgrid = new QGridLayout();
@@ -39,7 +37,6 @@ fenetreparametre::fenetreparametre(communicationserie *serie) : QWidget()
 
     layoutgeneral->addWidget(label1);
     layoutgeneral->addLayout(layoutgrid);
-    layoutgeneral->addWidget(label5);
     layoutgeneral->addWidget(bt_confirme);
 
     connect(bt_confirme, SIGNAL(pressed()),this,SLOT(confirme_parametres()));

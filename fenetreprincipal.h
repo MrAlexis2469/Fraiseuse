@@ -31,7 +31,7 @@ private:
     QGridLayout *grid_principal;
     QPushButton *bt_start;
     QPushButton *bt_parametre;
-    QPushButton *bt_init;
+    QPushButton *bt_stop;
     QPushButton *bt_quitter;
     QPushButton *bt_visu;
     QProgressBar *avancement;
@@ -49,6 +49,8 @@ public slots:
     void maj_comtage(void);
     void oparametre();
     void ouverturesite();
+    void lancementb();
+    void stop();
 };
 
 #endif // FENETREPRINCIPAL_H

@@ -25,16 +25,11 @@ void FenetrePrincipal::maj_comtage()
     if(avancement->value()==100)
     {
         sec->stop();
-        bt_start->setEnabled(true);
-        bt_parametre->setEnabled(true);
-        bt_init->setEnabled(true);
-        bt_visu->setEnabled(true);
         avancement->setValue(0);
+        bt_visu->setEnabled(true);
         ligne1->setText(QString("Gauche = %1 mm").arg(serie->ngauche));
         ligne2->setText(QString("Haut = %1 mm").arg(serie->nhaut));
         ligne3->setText(QString("Droit = %1 mm").arg(serie->ndroite));
-        serie->portserie->write("0");
-        serie->portserie->flush();
     }
 }
 
@@ -42,12 +37,29 @@ void FenetrePrincipal::mise_en_marche()
 {
     bt_start->setEnabled(false);
     bt_parametre->setEnabled(false);
-    bt_init->setEnabled(false);
-    bt_visu->setEnabled(false);
-    sec->start(20);
-    compteur = 0;
+    bt_quitter->setEnabled(false);
     serie->portserie->write("1");
     serie->portserie->flush();
+}
+
+void FenetrePrincipal::lancementb()
+{
+    if(serie->debut == 1)
+    {
+        sec->start(100);
+        compteur = 0;
+        serie->debut = 0;
+        bt_visu->setEnabled(false);
+    }
+}
+
+void FenetrePrincipal::stop()
+{
+    bt_start->setEnabled(true);
+    bt_parametre->setEnabled(true);
+    serie->portserie->write("0");
+    serie->portserie->flush();
+    bt_quitter->setEnabled(true);
 }
 
 FenetrePrincipal::FenetrePrincipal() : QWidget()
@@ -62,7 +74,7 @@ FenetrePrincipal::FenetrePrincipal() : QWidget()
 
     bt_start = new QPushButton("Démarrer");
     bt_parametre = new QPushButton("Paramètres");
-    bt_init = new QPushButton("Initialisation");
+    bt_stop = new QPushButton("Stopper");
     bt_quitter = new QPushButton("Quitter");
     bt_visu = new QPushButton("Visualisation 3D");
 
@@ -85,7 +97,7 @@ FenetrePrincipal::FenetrePrincipal() : QWidget()
     grid_principal =new QGridLayout();
     grid_principal->addWidget(bt_start,2,2,1,1);
     grid_principal->addWidget(bt_parametre,2,1,1,1);
-    grid_principal->addWidget(bt_init,2,0,1,1);
+    grid_principal->addWidget(bt_stop,2,0,1,1);
     grid_principal->addWidget(avancement,1,0,1,3);
     grid_principal->addWidget(ligne1,0,0,1,1);
     grid_principal->addWidget(ligne2,0,1,1,1);
@@ -100,6 +112,8 @@ FenetrePrincipal::FenetrePrincipal() : QWidget()
     connect(sec, SIGNAL(timeout()), this, SLOT(maj_comtage()));
     connect(bt_parametre,SIGNAL(pressed()), this,SLOT(oparametre()));
     connect(bt_visu, SIGNAL(pressed()), this, SLOT(ouverturesite()));
+    connect(serie->portserie,SIGNAL(readyRead()),this,SLOT(lancementb()));
+    connect(bt_stop, SIGNAL(pressed()),this,SLOT(stop()));
 
     setLayout(layoutPrincipal);
 }

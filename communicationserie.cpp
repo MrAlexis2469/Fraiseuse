@@ -44,6 +44,10 @@ void communicationserie::lecture()
         int ii = car.size();
         for(int a = 0; a<ii; a++)
         {
+            if(car[a] == '?')
+            {
+                debut = 1;
+            }
             switch(mae)
             {
                 case SYN1:

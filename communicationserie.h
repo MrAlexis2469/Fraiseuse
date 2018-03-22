@@ -18,6 +18,7 @@ public:
     int i;
     QSerialPort *portserie;
     int ndroite, nhaut, ngauche;
+    char debut;
 private:
     char mae;
     QString bgauched, bgauchef,lgauche;

@@ -27,7 +27,6 @@ private:
     QLabel *label2;
     QLabel *label3;
     QLabel *label4;
-    QLabel *label5;
     QComboBox *list1;
     QComboBox *list2;
     QRadioButton *box1;
