@@ -30,7 +30,9 @@ void FenetrePrincipal::maj_comtage()
         bt_init->setEnabled(true);
         bt_visu->setEnabled(true);
         avancement->setValue(0);
-        ligne1->setText(QString("Ligne n°1 = %1 cm").arg(serie->ndroite));
+        ligne1->setText(QString("Gauche = %1 mm").arg(serie->ngauche));
+        ligne2->setText(QString("Haut = %1 mm").arg(serie->nhaut));
+        ligne3->setText(QString("Droit = %1 mm").arg(serie->ndroite));
         serie->portserie->write("0");
         serie->portserie->flush();
     }
@@ -71,9 +73,9 @@ FenetrePrincipal::FenetrePrincipal() : QWidget()
     ligne1 = new QLabel();
     ligne2 = new QLabel();
     ligne3 = new QLabel();
-    ligne1->setText(QString("Ligne n°1 = 0 cm"));
-    ligne2->setText(QString("Ligne n°2 = 0 cm"));
-    ligne3->setText(QString("Ligne n°3 = 0 cm"));
+    ligne1->setText(QString("Gauche = 0 mm"));
+    ligne2->setText(QString("Haut = 0 mm"));
+    ligne3->setText(QString("Droit = 0 mm"));
     ligne1->setAlignment(Qt::AlignCenter);
     ligne2->setAlignment(Qt::AlignCenter);
     ligne3->setAlignment(Qt::AlignCenter);

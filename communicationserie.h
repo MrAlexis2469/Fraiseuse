@@ -22,7 +22,8 @@ private:
     char mae;
     QString bgauched, bgauchef,lgauche;
     QString bhautd, bhautf,lhaut;
-    QString bdroited, bdroitef,ldoite;
+    QString bdroited, bdroitef,ldroite;
+    QString captdebut, captdebutl;
 public slots:
      void lecture();
 };
